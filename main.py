@@ -110,8 +110,13 @@ def getPDF():
         text = "ALL CONTACTS ARE BELOW:\n"
         for contact in contacts:
             text += (str(contact) + "\n")
+            final_content = text.replace("'", "")
+            final_content = final_content.replace("{", "")
+            final_content = final_content.replace("}", "")
+            final_content = final_content.replace("name", "Name")
+            final_content = final_content.replace("contact_number", "Contact Number")
         with open("Contacts.txt", "w") as file:
-            file.write(text)
+            file.write(final_content)
         pdf = FPDF()
         pdf.add_page()
         pdf.set_font("Arial", size=16)
